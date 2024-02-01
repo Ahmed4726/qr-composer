@@ -136,7 +136,7 @@
             <h4 class="mb-2">Welcome!</h4>
             <p class="mb-4">Please sign-in to your account and start the adventure</p>
 
-            <>
+            <form>
                 @csrf
               <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
@@ -150,10 +150,12 @@
                   </a>
                 </div>
                 <div class="input-group input-group-merge">
-                  <input id="password" class="block mt-1 w-full form-control"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password"
+                  <input
+                    type="password"
+                    id="password"
+                    class="form-control"
+                    name="password"
+                    placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                     aria-describedby="password" />
                   <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                 </div>
@@ -165,7 +167,7 @@
                 </div>
               </div>
               <button class="btn btn-primary d-grid w-100">Sign in</button>
-            </>
+            </form>
 
             <p class="text-center">
               <span>New on our platform?</span>
