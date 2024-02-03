@@ -187,12 +187,12 @@
 
             <p class="text-center">
               <span>Already have an account?</span>
-              <a href="auth-login-cover.html">
+              <a href="{{ route('login') }}">
                 <span>Sign in instead</span>
               </a>
             </p>
 
-            <div class="divider my-4">
+            <!-- <div class="divider my-4">
               <div class="divider-text">or</div>
             </div>
 
@@ -208,7 +208,7 @@
               <a href="javascript:;" class="btn btn-icon btn-label-twitter">
                 <i class="tf-icons bx bxl-twitter"></i>
               </a>
-            </div>
+            </div> -->
           </div>
         </div>
         <!-- /Register -->

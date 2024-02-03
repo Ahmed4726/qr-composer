@@ -145,7 +145,7 @@
               <div class="mb-3 form-password-toggle">
                 <div class="d-flex justify-content-between">
                   <label class="form-label" for="password">Password</label>
-                  <a href="auth-forgot-password-cover.html">
+                  <a href="{{ route('password.request') }}">
                     <small>Forgot Password?</small>
                   </a>
                 </div>
@@ -171,11 +171,11 @@
 
             <p class="text-center">
               <span>New on our platform?</span>
-              <a href="auth-register-cover.html">
+              <a href="{{ route('register') }}">
                 <span>Create an account</span>
               </a>
             </p>
-
+<!-- 
             <div class="divider my-4">
               <div class="divider-text">or</div>
             </div>
@@ -192,7 +192,7 @@
               <a href="javascript:;" class="btn btn-icon btn-label-twitter">
                 <i class="tf-icons bx bxl-twitter"></i>
               </a>
-            </div>
+            </div> -->
           </div>
         </div>
         <!-- /Login -->

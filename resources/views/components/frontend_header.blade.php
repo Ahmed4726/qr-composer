@@ -84,21 +84,24 @@
             </button>
             <ul class="navbar-nav me-auto">
               <li class="nav-item">
-                <a class="nav-link fw-medium" aria-current="page" href="landing-page.html#landingHero">Home</a>
+                <a class="nav-link fw-medium" aria-current="page" href="{{ url('/') }}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link fw-medium" href="landing-page.html#landingFeatures">Features</a>
+                <a class="nav-link fw-medium" href="{{route('features')}}">Features</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link fw-medium" href="{{ route('pricing') }}">Pricing</a>
+              </li>
+              <!-- <li class="nav-item">
                 <a class="nav-link fw-medium" href="landing-page.html#landingTeam">Team</a>
+              </li> -->
+              <li class="nav-item">
+                <a class="nav-link fw-medium" href="{{ route('faq') }}">FAQ</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link fw-medium" href="landing-page.html#landingFAQ">FAQ</a>
+                <a class="nav-link fw-medium" href="{{ route('contact') }}">Contact us</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link fw-medium" href="landing-page.html#landingContact">Contact us</a>
-              </li>
-              <li class="nav-item mega-dropdown">
+              <!-- <li class="nav-item mega-dropdown">
                 <a
                   href="javascript:void(0);"
                   class="nav-link dropdown-toggle navbar-ex-14-mega-dropdown mega-dropdown fw-medium"
@@ -326,10 +329,10 @@
                     </div>
                   </div>
                 </div>
-              </li>
-              <li class="nav-item">
+              </li> -->
+              <!-- <li class="nav-item">
                 <a class="nav-link fw-medium" href="../vertical-menu-template/index.html" target="_blank">Admin</a>
-              </li>
+              </li> -->
             </ul>
           </div>
           <div class="landing-menu-overlay d-lg-none"></div>
@@ -363,11 +366,19 @@
 
             <!-- navbar button: Start -->
             <li>
-              <a href="../vertical-menu-template/auth-login-cover.html" class="btn btn-primary" target="_blank"
-                ><span class="tf-icons bx bx-user me-md-1"></span
-                ><span class="d-none d-md-block">Login/Register</span></a
-              >
-            </li>
+    <!-- Login button -->
+    <a href="{{url('/login')}}" class="btn btn-primary">
+        <span class="tf-icons bx bx-user me-md-1"></span>
+        <span class="d-none d-md-block">Login</span>
+    </a>
+
+    <!-- Register button -->
+    <a href="#" class="btn btn-primary" target="_blank">
+        <span class="tf-icons bx bx-user me-md-1"></span>
+        <span class="d-none d-md-block">Register</span>
+    </a>
+</li>
+
             <!-- navbar button: End -->
           </ul>
           <!-- Toolbar: End -->
