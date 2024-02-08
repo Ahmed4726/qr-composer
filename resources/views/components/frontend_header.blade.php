@@ -367,16 +367,29 @@
             <!-- navbar button: Start -->
             <li>
     <!-- Login button -->
-    <a href="{{url('/login')}}" class="btn btn-primary">
+    @if(!Auth::user())
+    <a href="{{url('/login')}}" class="btn btn-primary" target="_blank">
         <span class="tf-icons bx bx-user me-md-1"></span>
         <span class="d-none d-md-block">Login</span>
     </a>
 
     <!-- Register button -->
-    <a href="#" class="btn btn-primary" target="_blank">
+    <a href="{{url('/register')}}" class="btn btn-primary" target="_blank">
         <span class="tf-icons bx bx-user me-md-1"></span>
         <span class="d-none d-md-block">Register</span>
     </a>
+    @endif
+    @if(Auth::user())
+    <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+
+                                    <a class="btn btn-primary" href="route('logout')"
+                                            onclick="event.preventDefault();
+                                                        this.closest('form').submit();">
+                                        {{ __('Log Out') }}
+                                    </a>
+                                </form>
+                                @endif
 </li>
 
             <!-- navbar button: End -->
