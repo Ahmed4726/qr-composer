@@ -111,7 +111,7 @@
                   </g>
                 </svg>
               </span>
-              <span class="app-brand-text demo menu-text fw-bold ms-2">Sneat</span>
+              <span class="app-brand-text demo menu-text fw-bold ms-2">Kling</span>
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
@@ -135,31 +135,36 @@
                     <div class="text-truncate" data-i18n="Analytics">Analytics</div>
                   </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item d-none">
                   <a href="dashboards-crm.html" class="menu-link">
                     <div class="text-truncate" data-i18n="CRM">CRM</div>
                   </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item d-none">
                   <a href="app-ecommerce-dashboard.html" class="menu-link">
                     <div class="text-truncate" data-i18n="eCommerce">eCommerce</div>
                   </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item d-none">
                   <a href="app-logistics-dashboard.html" class="menu-link">
                     <div class="text-truncate" data-i18n="Logistics">Logistics</div>
                   </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item d-none">
                   <a href="app-academy-dashboard.html" class="menu-link">
                     <div class="text-truncate" data-i18n="Academy">Academy</div>
                   </a>
                 </li>
               </ul>
             </li>
-
-            <!-- Layouts -->
             <li class="menu-item">
+              <a href="#" target="_blank" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-grid-alt"></i>
+                <div class="text-truncate">Create Compaign</div>
+              </a>
+            </li>
+            <!-- Layouts -->
+            <li class="menu-item d-none" >
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
                 <div class="text-truncate" data-i18n="Layouts">Layouts</div>
@@ -215,7 +220,7 @@
             </li>
 
             <!-- Front Pages -->
-            <li class="menu-item">
+            <li class="menu-item d-none">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-store"></i>
                 <div class="text-truncate" data-i18n="Front Pages">Front Pages</div>
@@ -250,35 +255,35 @@
             </li>
 
             <!-- Apps & Pages -->
-            <li class="menu-header small text-uppercase">
+            <li class="menu-header small text-uppercase d-none">
               <span class="menu-header-text" data-i18n="Apps & Pages">Apps &amp; Pages</span>
             </li>
-            <li class="menu-item">
+            <li class="menu-item d-none">
               <a href="app-email.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-envelope"></i>
                 <div class="text-truncate" data-i18n="Email">Email</div>
               </a>
             </li>
-            <li class="menu-item">
+            <li class="menu-item d-none">
               <a href="app-chat.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-chat"></i>
                 <div class="text-truncate" data-i18n="Chat">Chat</div>
               </a>
             </li>
-            <li class="menu-item">
+            <li class="menu-item d-none">
               <a href="app-calendar.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-calendar"></i>
                 <div class="text-truncate" data-i18n="Calendar">Calendar</div>
               </a>
             </li>
-            <li class="menu-item">
+            <li class="menu-item d-none">
               <a href="app-kanban.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-grid"></i>
                 <div class="text-truncate" data-i18n="Kanban">Kanban</div>
               </a>
             </li>
             <!-- e-commerce-app menu start -->
-            <li class="menu-item">
+            <li class="menu-item d-none">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-cart-alt"></i>
                 <div class="text-truncate" data-i18n="eCommerce">eCommerce</div>
@@ -418,7 +423,7 @@
             </li>
             <!-- e-commerce-app menu end -->
             <!-- Academy menu start -->
-            <li class="menu-item">
+            <li class="menu-item d-none">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-book-open"></i>
                 <div class="text-truncate" data-i18n="Academy">Academy</div>
@@ -442,7 +447,7 @@
               </ul>
             </li>
             <!-- Academy menu end -->
-            <li class="menu-item">
+            <li class="menu-item d-none">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-car"></i>
                 <div class="text-truncate" data-i18n="Logistics">Logistics</div>
@@ -460,7 +465,7 @@
                 </li>
               </ul>
             </li>
-            <li class="menu-item">
+            <li class="menu-item d-none">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-food-menu"></i>
                 <div class="text-truncate" data-i18n="Invoice">Invoice</div>
@@ -553,7 +558,7 @@
                 </li>
               </ul>
             </li>
-            <li class="menu-item">
+            <li class="menu-item d-none">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
                 <div class="text-truncate" data-i18n="Pages">Pages</div>
@@ -657,7 +662,7 @@
                 </li>
               </ul>
             </li>
-            <li class="menu-item">
+            <li class="menu-item d-none">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
                 <div class="text-truncate" data-i18n="Authentications">Authentications</div>
@@ -772,7 +777,7 @@
                 </li>
               </ul>
             </li>
-            <li class="menu-item">
+            <li class="menu-item d-none">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-spreadsheet"></i>
                 <div class="text-truncate" data-i18n="Wizard Examples">Wizard Examples</div>
@@ -795,7 +800,7 @@
                 </li>
               </ul>
             </li>
-            <li class="menu-item">
+            <li class="menu-item d-none">
               <a href="modal-examples.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-window-open"></i>
                 <div class="text-truncate" data-i18n="Modal Examples">Modal Examples</div>
@@ -803,11 +808,11 @@
             </li>
 
             <!-- Components -->
-            <li class="menu-header small text-uppercase">
+            <li class="menu-header small text-uppercase d-none">
               <span class="menu-header-text" data-i18n="Components">Components</span>
             </li>
             <!-- Cards -->
-            <li class="menu-item">
+            <li class="menu-item d-none">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div class="text-truncate" data-i18n="Cards">Cards</div>
@@ -847,7 +852,7 @@
               </ul>
             </li>
             <!-- User interface -->
-            <li class="menu-item">
+            <li class="menu-item d-none">
               <a href="javascript:void(0)" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-box"></i>
                 <div class="text-truncate" data-i18n="User interface">User interface</div>
@@ -952,7 +957,7 @@
             </li>
 
             <!-- Extended components -->
-            <li class="menu-item">
+            <li class="menu-item d-none">
               <a href="javascript:void(0)" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-copy"></i>
                 <div class="text-truncate" data-i18n="Extended UI">Extended UI</div>
@@ -1034,7 +1039,7 @@
             </li>
 
             <!-- Icons -->
-            <li class="menu-item">
+            <li class="menu-item d-none">
               <a href="javascript:void(0)" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-crown"></i>
                 <div class="text-truncate" data-i18n="Icons">Icons</div>
@@ -1054,16 +1059,16 @@
             </li>
 
             <!-- Forms & Tables -->
-            <li class="menu-header small text-uppercase">
+            <li class="menu-header small text-uppercase d-none">
               <span class="menu-header-text" data-i18n="Forms & Tables">Forms &amp; Tables</span>
             </li>
             <!-- Forms -->
-            <li class="menu-item">
+            <li class="menu-item d-none">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div class="text-truncate" data-i18n="Form Elements">Form Elements</div>
               </a>
-              <ul class="menu-sub">
+              <ul class="menu-sub d-none">
                 <li class="menu-item">
                   <a href="forms-basic-inputs.html" class="menu-link">
                     <div class="text-truncate" data-i18n="Basic Inputs">Basic Inputs</div>
@@ -1116,7 +1121,7 @@
                 </li>
               </ul>
             </li>
-            <li class="menu-item">
+            <li class="menu-item d-none">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div class="text-truncate" data-i18n="Form Layouts">Form Layouts</div>
@@ -1139,7 +1144,7 @@
                 </li>
               </ul>
             </li>
-            <li class="menu-item">
+            <li class="menu-item d-none">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-carousel"></i>
                 <div class="text-truncate" data-i18n="Form Wizard">Form Wizard</div>
@@ -1157,20 +1162,20 @@
                 </li>
               </ul>
             </li>
-            <li class="menu-item">
+            <li class="menu-item d-none">
               <a href="form-validation.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-list-check"></i>
                 <div class="text-truncate" data-i18n="Form Validation">Form Validation</div>
               </a>
             </li>
             <!-- Tables -->
-            <li class="menu-item">
+            <li class="menu-item d-none">
               <a href="tables-basic.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-table"></i>
                 <div class="text-truncate" data-i18n="Tables">Tables</div>
               </a>
             </li>
-            <li class="menu-item">
+            <li class="menu-item d-none">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-grid"></i>
                 <div class="text-truncate" data-i18n="Datatables">Datatables</div>
@@ -1195,28 +1200,28 @@
             </li>
 
             <!-- Charts & Maps -->
-            <li class="menu-header small text-uppercase">
+            <li class="menu-header small text-uppercase d-none">
               <span class="menu-header-text" data-i18n="Charts & Maps">Charts &amp; Maps</span>
             </li>
-            <li class="menu-item">
+            <li class="menu-item d-none">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-chart"></i>
                 <div class="text-truncate" data-i18n="Charts">Charts</div>
               </a>
-              <ul class="menu-sub">
+              <ul class="menu-sub d-none">
                 <li class="menu-item">
                   <a href="charts-apex.html" class="menu-link">
                     <div class="text-truncate" data-i18n="Apex Charts">Apex Charts</div>
                   </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item d-none">
                   <a href="charts-chartjs.html" class="menu-link">
                     <div class="text-truncate" data-i18n="ChartJS">ChartJS</div>
                   </a>
                 </li>
               </ul>
             </li>
-            <li class="menu-item">
+            <li class="menu-item d-none">
               <a href="maps-leaflet.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-map-alt"></i>
                 <div class="text-truncate" data-i18n="Leaflet Maps">Leaflet Maps</div>
@@ -1224,16 +1229,16 @@
             </li>
 
             <!-- Misc -->
-            <li class="menu-header small text-uppercase">
+            <li class="menu-header small text-uppercase d-none">
               <span class="menu-header-text" data-i18n="Misc">Misc</span>
             </li>
-            <li class="menu-item">
+            <li class="menu-item d-none">
               <a href="https://themeselection.com/support/" target="_blank" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-support"></i>
                 <div class="text-truncate" data-i18n="Support">Support</div>
               </a>
             </li>
-            <li class="menu-item">
+            <li class="menu-item d-none">
               <a
                 href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/documentation/"
                 target="_blank"
@@ -3112,31 +3117,31 @@
             <!-- Footer -->
             <footer class="content-footer footer bg-footer-theme">
               <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
-                <div class="mb-2 mb-md-0">
+                <div class="mb-2 mb-md-0 justify-content-center">
                   ©
                   <script>
                     document.write(new Date().getFullYear());
                   </script>
-                  , made with ❤️ by
-                  <a href="https://themeselection.com" target="_blank" class="footer-link fw-medium">ThemeSelection</a>
+                  
+                  <a href="https://themeselection.com" target="_blank" class="footer-link fw-medium">Kling</a>
                 </div>
                 <div class="d-none d-lg-inline-block">
-                  <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
-                  <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
+                  <!-- <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
+                  <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a> -->
 
-                  <a
+                  <!-- <a
                     href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/documentation/"
                     target="_blank"
                     class="footer-link"
                     >Documentation</a
-                  >
+                  > -->
 
-                  <a
+                  <!-- <a
                     href="https://themeselection.com/support/"
                     target="_blank"
                     class="footer-link d-none d-sm-inline-block"
                     >Support</a
-                  >
+                  > -->
                 </div>
               </div>
             </footer>

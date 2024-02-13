@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StripeController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,3 +43,6 @@ Route::get('/FAQ', function () {
     return view('user.faq');
 })->name('faq');
 
+//stripe
+Route::get('/stripe',[StripeController::class, 'stripe']);
+Route::post('/process-payment',[StripeController::class, 'stripePost'])->name('stripe.post');

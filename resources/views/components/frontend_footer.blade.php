@@ -54,7 +54,7 @@
                     </g>
                   </svg>
                 </span>
-                <span class="app-brand-text demo footer-link fw-bold ms-2 ps-1">Sneat</span>
+                <span class="app-brand-text demo footer-link fw-bold ms-2 ps-1">Kling</span>
               </a>
               <p class="footer-text footer-logo-description mb-4">
                 Most developer friendly & highly customisable Admin Dashboard Template.
@@ -144,9 +144,9 @@
               </script>
             </span>
             <a href="https://themeselection.com" target="_blank" class="fw-medium text-white footer-link"
-              >ThemeSelection,</a
+              >Kling</a
             >
-            <span class="footer-text"> Made with ❤️ for a better web.</span>
+            <!-- <span class="footer-text"> Made with ❤️ for a better web.</span> -->
           </div>
           <div>
             <a href="https://github.com/themeselection" class="footer-link me-3" target="_blank">
