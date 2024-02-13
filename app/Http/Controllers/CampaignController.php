@@ -84,7 +84,7 @@ class CampaignController extends Controller
 
         return redirect()
             ->route('campaigns.show', $campaign->id)
-            ->with('message', 'Campaign created Successfully'));
+            ->with('message', 'Campaign created Successfully');
     }
 
 
