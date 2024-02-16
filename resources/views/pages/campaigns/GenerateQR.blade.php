@@ -30,16 +30,16 @@
             <div class="card-content">
             <div class="card-body">
                 @foreach ($campaigns as $campaign)
-                    
-              
+
+
                 <fieldset class="form-group">
                     <label for="campaign_name">Name</label>
-                    <input name="campaign_name" type="text" class="form-control" id="campaignName" readonly="readonly" value="{{ $campaign->campaign_name }}">
+                    <input name="campaign_name" type="text" class="form-control" id="campaignName" readonly="readonly" value="{{ $campaign->qr_code_name }}">
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label for="url">Url</label>
-                    <input name="url" type="text" class="form-control" id="url" readonly="readonly" value="{{ $campaign->url }}">
+                    <input name="url" type="text" class="form-control" id="url" readonly="readonly" value="{{ $campaign->qr_code_url }}">
                 </fieldset>
 
                 <fieldset class="form-group">

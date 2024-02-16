@@ -43,7 +43,7 @@
                       class="mb-4 pb-2 scaleX-n1-rtl" />
                     <h4 class="mb-1">Basic</h4>
                     <div class="d-flex align-items-center justify-content-center">
-                      <span class="price-monthly h1 text-primary fw-bold mb-0">$19</span>
+                      <span class="price-monthly h1 text-primary fw-bold mb-0">$9</span>
                       <span class="price-yearly h1 text-primary fw-bold mb-0 d-none">$14</span>
                       <sub class="h6 text-muted mb-0 ms-1">/mo</sub>
                     </div>
@@ -112,8 +112,8 @@
                     </li>
                   </ul>
                   <div class="d-grid mt-4 pt-3">
-                    <a href="payment-page.html" class="btn btn-label-primary">Get Started</a>
-                  </div>
+                    <a href="{{ route('stripe', ['price' => 9]) }}" class="btn btn-label-primary">Get Started</a>
+                </div>
                 </div>
               </div>
             </div>
@@ -199,8 +199,8 @@
                     </li>
                   </ul>
                   <div class="d-grid mt-4 pt-3">
-                    <a href="payment-page.html" class="btn btn-primary">Get Started</a>
-                  </div>
+                    <a href="{{ route('stripe', ['price' => 29]) }}" class="btn btn-label-primary">Get Started</a>
+                </div>
                 </div>
               </div>
             </div>
@@ -286,8 +286,8 @@
                     </li>
                   </ul>
                   <div class="d-grid mt-4 pt-3">
-                    <a href="payment-page.html" class="btn btn-label-primary">Get Started</a>
-                  </div>
+                    <a href="{{ route('stripe', ['price' => 49]) }}" class="btn btn-label-primary">Get Started</a>
+                </div>
                 </div>
               </div>
             </div>

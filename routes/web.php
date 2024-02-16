@@ -33,16 +33,26 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
-    //     // Campaigns
+    // Campaigns
     Route::get('/campaigns', [CampaignController::class, 'index'])->name('campaigns.index');
     Route::get('/campaigns-create', [CampaignController::class, 'create'])->name('campaigns.create');
     Route::post('/campaigns-store', [CampaignController::class, 'store'])->name('campaigns.store');
     Route::get('/campaigns-show/{id}', [CampaignController::class, 'show'])->name('campaigns.show');
     Route::post('/campaigns-destryoy/{id}', [CampaignController::class, 'destroy'])->name('campaigns.destroy');
 
-//     // QRCode
-    Route::get('qrcode/generate/{campaign}', [QRCodeController::class, 'generateQRCode'])->name('qrcode-generate');
+    // Stripe
+    Route::get('/stripe',[StripeController::class, 'stripe'])->name('stripe');
+    Route::post('/process-payment',[StripeController::class, 'stripePost'])->name('stripe.post');
 
+
+    // QRCode
+    Route::get('qrcode/generate/{campaign}', [QRCodeController::class, 'generateQRCode'])->name('qrcode-generate');
+    Route::post('/qr-destroy/{id}', [CampaignController::class, 'qrDestroy'])->name('qr.destroy');
+    Route::post('/qr-store', [CampaignController::class, 'qrStore'])->name('qr.store');
+    Route::post('/update-qr/{id}', [CampaignController::class, 'qrUpdate'])->name('qr.update');
+    Route::get('/qr-create/{id}', [CampaignController::class, 'qrCreate'])->name('qr.create');
+    Route::get('/campaigns-qr/{id}', [CampaignController::class, 'qrCode'])->name('campaigns.qrCode');
+    Route::get('/campaigns-qr-show/{id}', [CampaignController::class, 'showQrCode'])->name('qrCode.show');
 //     // Coordinates
 //     Route::get('coordinates', [DashboardController::class, 'getCoordinates'])->name('get-coordinates');
 });
@@ -67,9 +77,7 @@ Route::get('qrcode/track/{campaign}', [QRCodeController::class, 'qrcodeTrack'])-
         return view('user.faq');
     })->name('faq');
 
-//stripe
-Route::get('/stripe',[StripeController::class, 'stripe']);
-Route::post('/process-payment',[StripeController::class, 'stripePost'])->name('stripe.post');
+
 
 // // Locale Route
 Route::get('lang/{locale}', [LanguageController::class, 'swap']);

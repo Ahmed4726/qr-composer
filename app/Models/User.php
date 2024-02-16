@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 use App\Models\Notification;
+use App\Models\QrCode;
 
 class User extends Authenticatable
 {
@@ -44,7 +45,7 @@ class User extends Authenticatable
      * @param String  $password
      */
     public function setPasswordAttribute($password)
-    {   
+    {
         $this->attributes['password'] = bcrypt($password);
     }
 
@@ -54,6 +55,11 @@ class User extends Authenticatable
     public function campaigns()
     {
         return $this->hasMany(Campaign::Class);
+    }
+
+    public function qrCodes()
+    {
+        return $this->hasMany(QrCode::Class);
     }
 
     public function readNotifications()
@@ -68,5 +74,15 @@ class User extends Authenticatable
         return Notification::whereNotIn('id', $readNotifications)
             ->where('status', 0)
             ->get();
+    }
+
+    public function exceedsCampaignLimit()
+    {
+        return $this->subscription_tier !== 'tier3' && $this->campaigns()->count() >= $this->campaign_limit;
+    }
+
+    public function exceedsQrCodeLimit()
+    {
+        return $this->subscription_tier !== 'tier3' && $this->qrCodes()->count() >= $this->qr_code_limit;
     }
 }

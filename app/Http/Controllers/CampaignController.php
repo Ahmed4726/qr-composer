@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Campaign;
+use App\Models\QRCode;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\JsonResponse;
@@ -81,23 +82,74 @@ class CampaignController extends Controller
             'background' => $request->background,
             'logo' => $logoPath
         ]);
-
+        $qrCode = QRCode::create([
+            'campaign_id' => $campaign->id,
+            'qr_code_name' => $request->campaign_name,
+            'qr_code_url' => $request->url,
+            'foreground' => $request->foreground,
+            'background' => $request->background,
+            'logo' => $logoPath
+        ]);
         return redirect()
             ->route('campaigns.show', $campaign->id)
             ->with('message', 'Campaign created Successfully');
     }
 
+    public function qrCode($id)
+    {
+        $campaign_id = $id;
+        $campaigns = QRCode::where('campaign_id', $id)->get();
+        return view('/pages/qrCode/index', compact('campaigns','campaign_id'));
+    }
 
+    public function showQrCode($id)
+    {
+        if (auth()->user()->exceedsQrCodeLimit()) {
+            return redirect()->back()->with('message', 'You have exceeded the QR code limit.');
+        }
+
+        $campaign_id = $id;
+        $campaigns = QRCode::where('id', $id)->get();
+        return view('/pages/qrCode/view', compact('campaigns','campaign_id'));
+    }
+
+    public function qrStore(Request $request)
+    {
+        $logoPath = null;
+        if ($request->hasFile('logo'))
+        {
+            $filename = $request->file('logo')->getClientOriginalName();
+            $logoPath = $request->file('logo')->move(public_path('/images'), $filename);
+            $logoPath = "images/{$filename}";
+        }
+
+        $qrCode = QRCode::create([
+            // 'campaign_id' => $campaign->id,
+            'qr_code_name' => $request->campaign_name,
+            'qr_code_url' => $request->url,
+            'foreground' => $request->foreground,
+            'background' => $request->background,
+            'logo' => $logoPath
+        ]);
+        return redirect()
+            ->route('qrCode.show', $qrCode->id)
+            ->with('message', 'QRCode created Successfully');
+    }
     public function show($id)
     {
         $campaigns = Campaign::where('id',$id)->get();
-   
+
         $breadcrumbs = [
             ['link'=>"",'name'=>trans('locale.campaign.title')], ['name'=>trans('locale.campaign.view')]
         ];
         return view('/pages/campaigns/view', compact('campaigns'));
     }
 
+    public function qrCreate($id, Request $request)
+    {
+        $campaign = $id;
+        return view('/pages/qrCode/create', compact('campaign'));
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -116,12 +168,23 @@ class CampaignController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function qrUpdate(Request $request, $id)
     {
-        //
+        // dd($request);
+        $qrcode = QRCode::find($id);
+        $qrcode->update([
+            'qr_code_name' => $request->qr_name,
+            'qr_code_url' => $request->url,
+            'foreground' => $request->foreground,
+            'background' => $request->background,
+        ]);
+
+        return redirect()
+        ->route('qrCode.show', $id)
+        ->with('message', 'QRCode Updated Successfully');
     }
 
-    
+
     public function destroy(Campaign $campaign)
     {
         $campaign->delete();
@@ -129,6 +192,16 @@ class CampaignController extends Controller
         return redirect()
             ->route('campaigns.index')
             ->with('message', 'Compaign deleted Successfully');
+    }
+
+    public function qrDestroy($id)
+    {
+        // dd('ok');
+        $qrcode = QRCode::where('id',$id)->delete();
+
+        return redirect()
+            ->route('campaigns.index')
+            ->with('message', 'QRCode deleted Successfully');
     }
 
     /**

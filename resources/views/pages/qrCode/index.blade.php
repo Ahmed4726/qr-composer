@@ -50,6 +50,12 @@
 	<div class="card">
 		<div class="card-header">
 			<h4 class="card-title">Campaign Details</h4>
+            {{-- @foreach ($campaigns as $campaign) --}}
+
+            <a href="/qr-create/{{ $campaign_id }}" class="btn btn-primary ml-auto" @if(auth()->user()->qrCodes()->count() >= auth()->user()->qr_code_limit) disabled @endif>Create QR Code</a>
+                {{-- @endforeach --}}
+
+
 		</div>
 		<div class="card-content">
 			<div class="card-body">
@@ -59,11 +65,11 @@
 							<tr>
 								<th>Id</th>
 								<th>Name</th>
-								{{-- <th>Url</th> --}}
-								{{-- <th>Foreground</th> --}}
-								{{-- <th>Background</th> --}}
-								{{-- <th>Logo</th> --}}
-								<th>CreatedAt</th>
+								<th>Url</th>
+								<th>Foreground</th>
+								<th>Background</th>
+								<th>Logo</th>
+								<th>Created at</th>
 								<th>Actions</th>
 							</tr>
 						</thead>
@@ -71,31 +77,31 @@
 							@foreach($campaigns as $campaign)
 							<tr>
 								<td>{{ $campaign->id }}</td>
-								<td>{{ $campaign->campaign_name }}</td>
-								{{-- <td>{{ $campaign->url }}</td> --}}
-								{{-- <td>
+								<td>{{ $campaign->qr_code_name }}</td>
+								<td>{{ $campaign->qr_code_url }}</td>
+								<td>
 									<input type="color" class="form-control color-picker" disabled value="{{ $campaign->foreground }}">
 								</td>
 								<td>
 									<input type="color" class="form-control color-picker" disabled value="{{ $campaign->background }}">
-								</td> --}}
-								{{-- <td>
+								</td>
+								<td>
 									@if($campaign->logo == null)
 									<img src='{{ asset("images/default.png") }}' width="50">
 									@else
 									<img src='{{ asset("$campaign->logo") }}' width="50">
 									@endif
-								</td> --}}
+								</td>
 								<th>{{ $campaign->created_at }}</th>
 								<td>
-									<form id="deleteForm{{ $campaign->id }}" action="{{ route('campaigns.destroy', $campaign->id) }}" method="POST" style="display: none;">
+									<form id="deleteForm{{ $campaign->id }}" action="{{ route('qr.destroy', $campaign->id) }}" method="POST" style="display: none;">
 										@csrf
-										@method('DELETE')
+										{{-- @method('DELETE') --}}
 									</form>
-									<a href="{{ route('campaigns.qrCode', $campaign->id) }}" class="btn btn-icon rounded-circle btn-flat-success waves-effect waves-light">
+									<a href="{{ route('qrCode.show', $campaign->id) }}" class="btn btn-icon rounded-circle btn-flat-success waves-effect waves-light">
 										<i class="fas fa-eye"></i>
 									</a>
-									<button onclick="deleteCampaign({{ $campaign->id }})" class="btn btn-icon rounded-circle btn-flat-danger waves-effect waves-light">
+									<button onclick="deleteqrcode({{ $campaign->id }})" class="btn btn-icon rounded-circle btn-flat-danger waves-effect waves-light">
 										<i class="fas fa-trash"></i>
 
 									</button>
@@ -117,7 +123,8 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 	<script>
-		function deleteCampaign(campaignId) {
+		function deleteqrcode(campaignId) {
+            // alert(campaignId)
 			Swal.fire({
 				title: 'Are you sure?',
 				text: "You won't be able to revert this!",

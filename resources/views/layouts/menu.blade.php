@@ -52,7 +52,15 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="../../assets/js/config.js"></script>
   </head>
+<style>
+    .disabled-link {
+    pointer-events: none; /* Disable click events */
+    color: #999; /* Adjust the color to indicate a disabled state */
+    text-decoration: none; /* Remove underline or other styles */
+    cursor: not-allowed; /* Show a not-allowed cursor on hover */
+}
 
+</style>
   <body>
 <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
@@ -164,9 +172,9 @@
                 </a>
               </li>
               <li class="menu-item">
-                <a href="/campaigns-create" class="menu-link">
-                  <i class="menu-icon tf-icons bx bx-grid-alt"></i>
-                  <div class="text-truncate">Create Compaign</div>
+                <a href="/campaigns-create" class="menu-link" onclick="checkCampaignLimit()">
+                    <i class="menu-icon tf-icons bx bx-grid-alt"></i>
+                    <div class="text-truncate">Create Campaign</div>
                 </a>
               </li>
               <!-- Layouts -->
@@ -1772,7 +1780,7 @@
 
             <!-- Content wrapper -->
             <main class="content-wrapper">
-                <br>
+
                 @yield('content')
             </main>
 
@@ -1799,5 +1807,26 @@
 
     <!-- Page JS -->
     <script src="../../assets/js/dashboards-analytics.js"></script>
+<!-- If you're not using npm/yarn, include it via CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@12"></script>
+
+    <script>
+        function checkCampaignLimit() {
+            var campaignCount = {{ auth()->user()->campaigns()->count() }};
+            var campaignLimit = {{ auth()->user()->campaign_limit }};
+
+            if (campaignCount >= campaignLimit) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Campaign limit reached',
+                    text: 'You cannot create more campaigns please Upgrade your plan.',
+                });
+
+                event.preventDefault(); // Prevent the default action of the link
+            }
+        }
+    </script>
+
+
   </body>
 </html>

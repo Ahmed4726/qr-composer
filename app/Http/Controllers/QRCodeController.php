@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Campaign;
 use App\Models\CampaignHit;
+use App\Models\QRCode;
 use Endroid\QrCode\Color\Color;
 use Illuminate\Support\Facades\Http;
 use Endroid\QrCode\Builder\Builder;
@@ -27,11 +28,11 @@ class QRCodeController extends Controller
      */
 
 
-     public function generateQRCode(Campaign $campaign, Request $request)
+     public function generateQRCode(QRCode $campaign, Request $request)
      {
          // Generate the URL for the QR code
          $url = route('qrcode-track', $campaign);
-         $url1 = $campaign->url;
+         $url1 = $campaign->qr_code_url;
                  // Convert RGB to Color
         $foregroundColor = new Color(
             $this->convertRGB($campaign->foreground)['r'],
@@ -55,7 +56,7 @@ class QRCodeController extends Controller
              ->roundBlockSizeMode(RoundBlockSizeMode::Margin)
              ->foregroundColor($foregroundColor)
              ->backgroundColor($backgroundColor);
- 
+
          // Set logo if available
          if ($campaign->logo != null) {
              $logoPath = public_path($campaign->logo);
@@ -63,9 +64,9 @@ class QRCodeController extends Controller
                  ->logoResizeToWidth(150)
                  ->logoPunchoutBackground(true);
          }
- 
-         // Build the QrCode
-         $qrCode = $qrCode->build();
+
+        // Build the QrCode
+        $qrCode = $qrCode->build();
         //  echo $qrCode->output();
         header('Content-Type: '.$qrCode->getMimeType());
         $image = $qrCode->getString();
