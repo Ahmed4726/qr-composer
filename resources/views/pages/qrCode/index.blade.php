@@ -49,11 +49,12 @@
 	<!-- Start Campaign -->
 	<div class="card">
 		<div class="card-header">
-			<h4 class="card-title">Campaign Details</h4>
+			<h4 class="card-title">Campaign Code Details</h4>
             {{-- @foreach ($campaigns as $campaign) --}}
-
-            <a href="/qr-create/{{ $campaign_id }}" class="btn btn-primary ml-auto" @if(auth()->user()->qrCodes()->count() >= auth()->user()->qr_code_limit) disabled @endif>Create QR Code</a>
-                {{-- @endforeach --}}
+            {{-- @dd(auth()->user()->qrCodes()->count()); --}}
+            {{-- @dd(auth()->user()->qrCodes()->count() > auth()->user()->qr_code_limit); --}}
+            <a href="/qr-create/{{ $campaign_id }}" class="btn btn-primary ml-auto" id="createQrCodeBtn">Create QR Code</a>
+            {{-- @endforeach --}}
 
 
 		</div>
@@ -87,7 +88,7 @@
 								</td>
 								<td>
 									@if($campaign->logo == null)
-									<img src='{{ asset("images/default.png") }}' width="50">
+									<img src='{{ asset("images/download.png") }}' width="50">
 									@else
 									<img src='{{ asset("$campaign->logo") }}' width="50">
 									@endif
@@ -123,6 +124,29 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 	<script>
+
+        document.getElementById('createQrCodeBtn').addEventListener('click', function(event) {
+                event.preventDefault();
+
+                if (authUserQrCodeLimitReached()) {
+                    showQrCodeLimitError();
+                } else {
+                    // Proceed with creating QR code, e.g., redirect to the link
+                    window.location.href = event.target.getAttribute('href');
+                }
+            });
+
+    function authUserQrCodeLimitReached() {
+        return {{ auth()->user()->qrCodes()->count() > auth()->user()->qr_code_limit ? 'false' : 'true' }};
+    }
+
+    function showQrCodeLimitError() {
+        Swal.fire({
+            icon: 'error',
+            title: 'QR Code Limit Reached',
+            text: 'Upgrade your plan to create more QR codes.',
+        });
+    }
 		function deleteqrcode(campaignId) {
             // alert(campaignId)
 			Swal.fire({

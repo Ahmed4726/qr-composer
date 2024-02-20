@@ -88,9 +88,10 @@ class QRCodeController extends Controller
      */
     public function qrCodeTrack(QRCode $qrcode, Request $request)
     {
+        
         $ip = $request->ip(); // Use Laravel's request method for more reliable IP retrieval
         $ipTrackURL = 'http://api.ipstack.com/' . $ip . '?access_key=' . $this->accessKey;
-        dd($trackResponse);
+        // dd($trackResponse);
         // try {
             $trackResponse = json_decode(Http::get($ipTrackURL));
 
@@ -100,6 +101,8 @@ class QRCodeController extends Controller
                     'latitude' => $trackResponse->latitude,
                     'longitude' => $trackResponse->longitude,
                     'location' => $trackResponse->continent_name . '/' . $trackResponse->city . '/' . $trackResponse->zip,
+                    'country' => $trackResponse->country_name,
+                    'country_flag' => $trackResponse->country_flag,
                     'browser' => $request->server('HTTP_USER_AGENT')
                 ]);
             }

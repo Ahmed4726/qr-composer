@@ -122,7 +122,7 @@
                     <p class="mb-0">Once you delete your account, there is no going back. Please be certain.</p>
                 </div>
             </div>
-            <form id="formAccountDeactivation" action="{{ route('profile.destroy') }}" method="post">
+            <form id="formAccountDeactivation" action="/profile-delete" method="post">
                 @csrf
                 <div class="form-check mb-3">
                     <input class="form-check-input" type="checkbox" name="accountActivation" id="accountActivation" />

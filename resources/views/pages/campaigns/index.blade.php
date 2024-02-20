@@ -50,6 +50,8 @@
 	<div class="card">
 		<div class="card-header">
 			<h4 class="card-title">Campaign Details</h4>
+            <a href="/campaigns-create" class="btn btn-primary ml-auto" onclick="checkCampaignLimit()">Create New Compaign</a>
+
 		</div>
 		<div class="card-content">
 			<div class="card-body">
@@ -117,6 +119,22 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 	<script>
+
+function checkCampaignLimit() {
+            var campaignCount = {{ auth()->user()->campaigns()->count() }};
+            var campaignLimit = {{ auth()->user()->campaign_limit }};
+
+            if (campaignCount >= campaignLimit) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Campaign limit reached',
+                    text: 'You cannot create more campaigns please Upgrade your plan.',
+                });
+
+                event.preventDefault(); // Prevent the default action of the link
+            }
+        }
+
 		function deleteCampaign(campaignId) {
 			Swal.fire({
 				title: 'Are you sure?',

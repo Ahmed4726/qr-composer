@@ -32,7 +32,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['au
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/profile-delete', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
     // Campaigns
@@ -56,7 +56,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/campaigns-qr/{id}', [CampaignController::class, 'qrCode'])->name('campaigns.qrCode');
     Route::get('/campaigns-qr-show/{id}', [CampaignController::class, 'showQrCode'])->name('qrCode.show');
     // Coordinates
-    // Route::get('coordinates', [DashboardController::class, 'getCoordinates'])->name('get-coordinates');
+    Route::get('coordinates', [DashboardController::class, 'getCoordinates'])->name('get-coordinates');
 });
 
 // // QR code track

@@ -47,12 +47,12 @@ class User extends Authenticatable
      */
     public function campaigns()
     {
-        return $this->hasMany(Campaign::Class);
+        return $this->hasMany(Campaign::class);
     }
 
     public function qrCodes()
     {
-        return $this->hasMany(QrCode::Class);
+        return $this->hasMany(QrCode::class);
     }
 
     public function readNotifications()

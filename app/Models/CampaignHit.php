@@ -40,4 +40,9 @@ class CampaignHit extends Model
     {
         return $this->belongsTo(Campaign::Class);
     }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
 }

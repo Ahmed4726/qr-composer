@@ -44,14 +44,21 @@ class LoginRequest extends FormRequest
         $this->ensureIsNotRateLimited();
 
         $credentials = $this->only('email', 'password');
-        // dd($credentials);
+
         $user = User::where('email', $credentials['email'])->first();
-        // dd(Hash::check($credentials['password'], $user->password));
+
         if ($user && Hash::check($credentials['password'], $user->password)) {
-            Auth::login($user, $this->boolean('remember'));
-            // dd('okk');
-            RateLimiter::clear($this->throttleKey());
-            return redirect()->intended('/dashboard'); // Redirect to the intended page or your dashboard
+            if ($user->status == '1') {
+                Auth::login($user, $this->boolean('remember'));
+                RateLimiter::clear($this->throttleKey());
+                return redirect()->intended('/dashboard');
+            } else {
+                RateLimiter::hit($this->throttleKey());
+
+                throw ValidationException::withMessages([
+                    'email' => trans('Your account is deactivated'),
+                ])->redirectTo('/login'); // Redirect to the login page or any other desired page
+            }
         } else {
             RateLimiter::hit($this->throttleKey());
 
@@ -60,6 +67,8 @@ class LoginRequest extends FormRequest
             ]);
         }
     }
+
+
 
     /**
      * Ensure the login request is not rate limited.

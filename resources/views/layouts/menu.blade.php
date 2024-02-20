@@ -171,8 +171,8 @@
                   <div class="text-truncate">Compaign</div>
                 </a>
               </li>
-              <li class="menu-item">
-                <a href="/campaigns-create" class="menu-link" onclick="checkCampaignLimit()">
+              <li class="menu-item d-none">
+                <a href="/campaigns-create" class="menu-link " onclick="checkCampaignLimit()">
                     <i class="menu-icon tf-icons bx bx-grid-alt"></i>
                     <div class="text-truncate">Create Campaign</div>
                 </a>
