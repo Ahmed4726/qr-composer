@@ -6,7 +6,10 @@ use App\Http\Controllers\StripeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\CampaignController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\QRCodeController;
+use App\Http\Controllers\UserController;
+// use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,17 +22,16 @@ use App\Http\Controllers\QRCodeController;
 |
 */
 
+// Auth::route();
 Route::get('/', function () {
     return view('welcome');
 });
 require __DIR__.'/auth.php';
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
@@ -53,12 +55,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/qr-create/{id}', [CampaignController::class, 'qrCreate'])->name('qr.create');
     Route::get('/campaigns-qr/{id}', [CampaignController::class, 'qrCode'])->name('campaigns.qrCode');
     Route::get('/campaigns-qr-show/{id}', [CampaignController::class, 'showQrCode'])->name('qrCode.show');
-//     // Coordinates
-//     Route::get('coordinates', [DashboardController::class, 'getCoordinates'])->name('get-coordinates');
+    // Coordinates
+    // Route::get('coordinates', [DashboardController::class, 'getCoordinates'])->name('get-coordinates');
 });
 
 // // QR code track
-Route::get('qrcode/track/{campaign}', [QRCodeController::class, 'qrcodeTrack'])->name('qrcode-track');
+Route::get('qrcode/track/{qrcode}', [QRCodeController::class, 'qrCodeTrack'])->name('qrcode-track');
 
 
 
@@ -76,6 +78,8 @@ Route::get('qrcode/track/{campaign}', [QRCodeController::class, 'qrcodeTrack'])-
     Route::get('/FAQ', function () {
         return view('user.faq');
     })->name('faq');
+
+    Route::get('/users', [UserController::class, 'index'])->name('users');
 
 
 

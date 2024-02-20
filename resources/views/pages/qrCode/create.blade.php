@@ -37,7 +37,7 @@
 				<div class="card-body">
 					<form action="/qr-store" method="POST" enctype="multipart/form-data">
 						@csrf
-                        <input type="hidden" value="{{ $campaign }}">
+                        <input type="hidden" name="campaign_id" value="{{ $campaign }}">
 						<fieldset class="form-group">
 							<label for="campaign_name">QRCode Name</label>
 							<input name="campaign_name" type="text" class="form-control" id="campaignName" placeholder="Campaign Name" value="{{ old('campaign_name') }}">

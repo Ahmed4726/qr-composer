@@ -13,6 +13,7 @@ use Endroid\QrCode\Encoding\Encoding;
 use Endroid\QrCode\ErrorCorrectionLevel;
 use Endroid\QrCode\RoundBlockSizeMode;
 use Endroid\QrCode\Writer\PngWriter;
+use Illuminate\Support\Facades\Redirect;
 
 class QRCodeController extends Controller
 {
@@ -32,6 +33,7 @@ class QRCodeController extends Controller
      {
          // Generate the URL for the QR code
          $url = route('qrcode-track', $campaign);
+        //  dd($url);
          $url1 = $campaign->qr_code_url;
                  // Convert RGB to Color
         $foregroundColor = new Color(
@@ -48,7 +50,7 @@ class QRCodeController extends Controller
          // Use the Builder to create a QrCode instance
          $qrCode = Builder::create()
              ->writer(new PngWriter())
-             ->data($url1)
+             ->data($url)
              ->encoding(new Encoding('UTF-8'))
              ->errorCorrectionLevel(ErrorCorrectionLevel::High)
              ->size(400)
@@ -84,21 +86,29 @@ class QRCodeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function qrCodeTrack(Campaign $campaign, Request $request)
+    public function qrCodeTrack(QRCode $qrcode, Request $request)
     {
-        $ip = $_SERVER['REMOTE_ADDR'];
+        $ip = $request->ip(); // Use Laravel's request method for more reliable IP retrieval
         $ipTrackURL = 'http://api.ipstack.com/' . $ip . '?access_key=' . $this->accessKey;
-        $trackResponse = json_decode(Http::get($ipTrackURL));
+        dd($trackResponse);
+        // try {
+            $trackResponse = json_decode(Http::get($ipTrackURL));
 
-        CampaignHit::create([
-            'campaign_id' => $campaign->id,
-            'latitude' => $trackResponse->latitude,
-            'longitude' => $trackResponse->longitude,
-            'location' => $trackResponse->continent_name . '/' . $trackResponse->city . '/' . $trackResponse->zip,
-            'browser' => $_SERVER['HTTP_USER_AGENT']
-        ]);
+            if (isset($trackResponse->latitude) && isset($trackResponse->longitude)) {
+                CampaignHit::create([
+                    'campaign_id' => $qrcode->campaign_id,
+                    'latitude' => $trackResponse->latitude,
+                    'longitude' => $trackResponse->longitude,
+                    'location' => $trackResponse->continent_name . '/' . $trackResponse->city . '/' . $trackResponse->zip,
+                    'browser' => $request->server('HTTP_USER_AGENT')
+                ]);
+            }
+        // } catch (\Exception $e) {
+        //     // Handle API request errors (e.g., log the error)
+        // }
 
-        return redirect()->to($campaign->url);
+        // Redirect the user to the URL stored in $qrcode->qr_code_url after tracking
+        return Redirect::to($qrcode->qr_code_url);
     }
 
     /**

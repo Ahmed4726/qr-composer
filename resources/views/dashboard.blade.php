@@ -1,19 +1,18 @@
 @extends('layouts.menu')
+<br>
 @section('content')
-<head>
-    <script src="../../assets/js/dashboards-analytics.js"></script>
-</head>
+
 {{-- <div class="container"> --}}
     <!-- Content -->
 
-    <div class="container-xxl flex-grow-1 ">
+    <div class="container">
       <div class="row">
         <div class="col-lg-8 mb-4 order-0">
           <div class="card">
             <div class="d-flex align-items-end row">
               <div class="col-sm-7">
                 <div class="card-body">
-                  <h5 class="card-title text-primary">Congratulations John! 🎉</h5>
+                  <h5 class="card-title text-primary">Welcome {{ $name }} </h5>
                   <p class="mb-4">
                     You have done <span class="fw-medium">72%</span> more sales today. Check your new badge in
                     your profile.
@@ -35,15 +34,19 @@
             </div>
           </div>
         </div>
+        @if($isAdmin)
         <div class="col-lg-4 col-md-4 order-1">
           <div class="row">
             <div class="col-lg-6 col-md-12 col-6 mb-4">
               <div class="card">
-                <div class="card-body pb-0">
-                  <span class="d-block fw-medium mb-1">Order</span>
-                  <h3 class="card-title mb-1">276k</h3>
+                <div class="card-body pb-2">
+                  <span class="d-block fw-medium mb-1">Total Users: {{ $count_total_users }}</span>
+                  {{-- <h3 class="card-title mb-1"></h3> --}}
+                    <span class="d-block fw-medium mb-1">Active Users: {{ $count_active_users }}</span>
+                    <span class="d-block fw-medium mb-1">In-Active Users: {{ $count_in_active_users }}</span>
+
                 </div>
-                <div id="orderChart" class="mb-3"></div>
+                {{-- <div id="orderChart" class="mb-3"></div> --}}
               </div>
             </div>
             <div class="col-lg-6 col-md-12 col-6 mb-4">
@@ -64,7 +67,7 @@
                         data-bs-toggle="dropdown"
                         aria-haspopup="true"
                         aria-expanded="false">
-                        <i class="bx bx-dots-vertical-rounded"></i>
+                        {{-- <i class="bx bx-dots-vertical-rounded"></i> --}}
                       </button>
                       <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt6">
                         <a class="dropdown-item" href="javascript:void(0);">View More</a>
@@ -72,9 +75,15 @@
                       </div>
                     </div>
                   </div>
-                  <span>Sales</span>
-                  <h3 class="card-title text-nowrap mb-1">$4,679</h3>
-                  <small class="text-success fw-medium"><i class="bx bx-up-arrow-alt"></i> +28.42%</small>
+                  <span>Free</span>
+                  <h5 class="card-title text-nowrap mb-1">{{ $count_subscription_tier_free }}</h5>
+                  <span>Tier 1</span>
+                  <h5 class="card-title text-nowrap mb-1">{{ $count_subscription_tier_tier1 }}</h5>
+                  <span>Tier 2</span>
+                  <h5 class="card-title text-nowrap mb-1">{{ $count_subscription_tier_tier2 }}</h5>
+                  <span>Tier 3</span>
+                  <h5 class="card-title text-nowrap mb-1">{{ $count_subscription_tier_tier3 }}</h5>
+                  {{-- <small class="text-success fw-medium"><i class="bx bx-up-arrow-alt"></i> +28.42%</small> --}}
                 </div>
               </div>
             </div>
@@ -177,8 +186,8 @@
                 </div>
               </div>
             </div>
-            <!-- </div>
-<div class="row"> -->
+            </div>
+<div class="row">
 
                     <div class="col-12 mb-4">
                       <div class="card">
@@ -1354,7 +1363,7 @@
               </div>
             </div>
             <!-- / Content -->
-
+            @endif
             <!-- Footer -->
             <footer class="content-footer footer bg-footer-theme">
               <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">

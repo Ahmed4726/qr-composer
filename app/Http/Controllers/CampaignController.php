@@ -104,9 +104,7 @@ class CampaignController extends Controller
 
     public function showQrCode($id)
     {
-        if (auth()->user()->exceedsQrCodeLimit()) {
-            return redirect()->back()->with('message', 'You have exceeded the QR code limit.');
-        }
+
 
         $campaign_id = $id;
         $campaigns = QRCode::where('id', $id)->get();
@@ -115,6 +113,10 @@ class CampaignController extends Controller
 
     public function qrStore(Request $request)
     {
+        if (auth()->user()->exceedsQrCodeLimit()) {
+            return redirect()->back()->with('message', 'You have exceeded the QR code limit.');
+        }
+
         $logoPath = null;
         if ($request->hasFile('logo'))
         {
@@ -124,7 +126,7 @@ class CampaignController extends Controller
         }
 
         $qrCode = QRCode::create([
-            // 'campaign_id' => $campaign->id,
+            'campaign_id' => $request->campaign_id,
             'qr_code_name' => $request->campaign_name,
             'qr_code_url' => $request->url,
             'foreground' => $request->foreground,
@@ -148,6 +150,7 @@ class CampaignController extends Controller
     public function qrCreate($id, Request $request)
     {
         $campaign = $id;
+        // dd($campaign);
         return view('/pages/qrCode/create', compact('campaign'));
     }
     /**
