@@ -62,6 +62,10 @@
 
 </style>
   <body>
+    @php
+        $name = auth()->user()->name;
+        $is_admin = auth()->user()->is_admin;
+    @endphp
 <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
@@ -503,12 +507,14 @@
                   </li>
                 </ul>
               </li>
+              @if($is_admin == 1)
               <li class="menu-item {{ request()->routeIs('users') ? 'active' : '' }}">
                 <a href="{{ route('users') }}" class="menu-link">
                   <i class="menu-icon tf-icons bx bx-user"></i>
                   <div class="text-truncate">Users</div>
                   <!-- <span class="badge badge-center rounded-pill bg-danger ms-auto">5</span> -->
                 </a>
+                @endif
                 <ul class="menu-sub d-none">
                   <li class="menu-item {{ request()->routeIs('users') ? 'active' : '' }}">
                     <a href="{{ route('users') }}" class="menu-link">
@@ -1693,9 +1699,10 @@
                                 <img src="../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                               </div>
                             </div>
+
                             <div class="flex-grow-1">
-                              <span class="fw-medium d-block">John Doe</span>
-                              <small class="text-muted">Admin</small>
+                              <span class="fw-medium d-block">{{ $name }}</span>
+                              <small class="text-muted">@if($is_admin == 1) Admin @else User @endif</small>
                             </div>
                           </div>
                         </a>
