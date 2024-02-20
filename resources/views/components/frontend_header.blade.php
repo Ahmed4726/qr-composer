@@ -16,7 +16,7 @@
               <i class="tf-icons bx bx-menu bx-sm align-middle"></i>
             </button>
             <!-- Mobile menu toggle: End-->
-            <a href="landing-page.html" class="app-brand-link">
+            <a href="{{url('/')}}" class="app-brand-link">
               <span class="app-brand-logo demo">
                 <svg
                   width="25"
@@ -83,22 +83,22 @@
               <i class="tf-icons bx bx-x bx-sm"></i>
             </button>
             <ul class="navbar-nav me-auto">
-              <li class="nav-item">
-                <a class="nav-link fw-medium" aria-current="page" href="{{ url('/') }}">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link fw-medium" href="{{route('features')}}">Features</a>
-              </li>
-              <li class="nav-item">
+            <li class="nav-item {{ request()->is('/') ? 'active' : '' }}">
+            <a class="nav-link fw-medium" aria-current="page" href="{{ url('/') }}">Home</a>
+          </li>
+          <li class="nav-item {{ request()->routeIs('features') ? 'active' : '' }}">
+            <a class="nav-link fw-medium" href="{{ route('features')}}">Features</a>
+          </li>
+              <li class="nav-item {{ request()->routeIs('pricing') ? 'active' : '' }}">
                 <a class="nav-link fw-medium" href="{{ route('pricing') }}">Pricing</a>
               </li>
               <!-- <li class="nav-item">
                 <a class="nav-link fw-medium" href="landing-page.html#landingTeam">Team</a>
               </li> -->
-              <li class="nav-item">
+              <li class="nav-item {{ request()->routeIs('faq') ? 'active' : '' }}">
                 <a class="nav-link fw-medium" href="{{ route('faq') }}">FAQ</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item {{ request()->routeIs('contact') ? 'active' : '' }}">
                 <a class="nav-link fw-medium" href="{{ route('contact') }}">Contact us</a>
               </li>
               <!-- <li class="nav-item mega-dropdown">
@@ -334,11 +334,7 @@
                 <a class="nav-link fw-medium" href="../vertical-menu-template/index.html" target="_blank">Admin</a>
               </li> -->
             </ul>
-          </div>
-          <div class="landing-menu-overlay d-lg-none"></div>
-          <!-- Menu wrapper: End -->
-          <!-- Toolbar: Start -->
-          <ul class="navbar-nav flex-row align-items-center ms-auto">
+            <ul class="navbar-nav flex-row align-items-center ms-auto">
             <!-- Style Switcher -->
             <li class="nav-item dropdown-style-switcher dropdown me-2 me-xl-0">
               <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
@@ -380,20 +376,28 @@
     </a>
     @endif
     @if(Auth::user())
-    <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-
-                                    <a class="btn btn-primary" href="route('logout')"
-                                            onclick="event.preventDefault();
-                                                        this.closest('form').submit();">
-                                        {{ __('Log Out') }}
-                                    </a>
-                                </form>
+    <div class="d-flex">
+    <form method="POST" action="{{ route('logout') }}" class="mr-2">
+        @csrf
+        <a class="btn btn-primary" href="{{ route('logout') }}"
+            onclick="event.preventDefault(); this.closest('form').submit();">
+            {{ __('Log Out') }}
+        </a>
+    </form>
+    <a class="btn btn-primary mx-1" href="{{ route('dashboard') }}">
+        {{ __('Dashboard') }}
+    </a>
+</div>
                                 @endif
 </li>
 
             <!-- navbar button: End -->
           </ul>
+          </div>
+          <div class="landing-menu-overlay d-lg-none"></div>
+          <!-- Menu wrapper: End -->
+          <!-- Toolbar: Start -->
+          
           <!-- Toolbar: End -->
         </div>
       </div>

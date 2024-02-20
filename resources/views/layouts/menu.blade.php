@@ -66,10 +66,9 @@
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
           <!-- Menu -->
-
           <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
             <div class="app-brand demo">
-              <a href="index.html" class="app-brand-link">
+              <a href="{{ route('dashboard') }}" class="app-brand-link">
                 <span class="app-brand-logo demo">
                   <svg
                     width="25"
@@ -121,7 +120,6 @@
                 </span>
                 <span class="app-brand-text demo menu-text fw-bold ms-2">Kling</span>
               </a>
-
               <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
                 <i class="bx bx-chevron-left bx-sm align-middle"></i>
               </a>
@@ -131,18 +129,13 @@
 
             <ul class="menu-inner py-1">
               <!-- Dashboards -->
-              <li class="menu-item active open">
-                <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <li class="menu-item {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                <a href="{{ route('dashboard') }}" class="menu-link">
                   <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                  <div class="text-truncate" >Dashboards</div>
-                  <span class="badge badge-center rounded-pill bg-danger ms-auto">5</span>
+                  <div class="text-truncate">Dashboards</div>
+                  <!-- <span class="badge badge-center rounded-pill bg-danger ms-auto">5</span> -->
                 </a>
                 <ul class="menu-sub">
-                  <li class="menu-item active">
-                    <a href="dashboards-analytics.html" class="menu-link">
-                      <div class="text-truncate">Analytics</div>
-                    </a>
-                  </li>
                   <li class="menu-item d-none">
                     <a href="dashboards-crm.html" class="menu-link">
                       <div class="text-truncate" data-i18n="CRM">CRM</div>
@@ -165,18 +158,20 @@
                   </li>
                 </ul>
               </li>
-              <li class="menu-item">
-                <a href="/campaigns" class="menu-link">
+              <li class="menu-item {{ request()->routeIs('campaigns.index') ? 'active' : '' }}">
+                <a href="{{ route('campaigns.index') }}" class="menu-link">
                   <i class="menu-icon tf-icons bx bx-grid-alt"></i>
                   <div class="text-truncate">Compaign</div>
                 </a>
               </li>
               <li class="menu-item d-none">
                 <a href="/campaigns-create" class="menu-link " onclick="checkCampaignLimit()">
+              <!-- <li class="menu-item {{ request()->routeIs('campaigns.create') ? 'active' : '' }}">
+                <a href="{{ route('campaigns.create') }}" class="menu-link" onclick="checkCampaignLimit()">
                     <i class="menu-icon tf-icons bx bx-grid-alt"></i>
                     <div class="text-truncate">Create Campaign</div>
                 </a>
-              </li>
+              </li> -->
               <!-- Layouts -->
               <li class="menu-item d-none" >
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -508,15 +503,16 @@
                   </li>
                 </ul>
               </li>
-              <li class="menu-item">
-                <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <li class="menu-item {{ request()->routeIs('users') ? 'active' : '' }}">
+                <a href="{{ route('users') }}" class="menu-link">
                   <i class="menu-icon tf-icons bx bx-user"></i>
-                  <div class="text-truncate" data-i18n="Users">Users</div>
+                  <div class="text-truncate">Users</div>
+                  <!-- <span class="badge badge-center rounded-pill bg-danger ms-auto">5</span> -->
                 </a>
-                <ul class="menu-sub">
-                  <li class="menu-item">
-                    <a href="/users" class="menu-link">
-                      <div class="text-truncate" data-i18n="List">List</div>
+                <ul class="menu-sub d-none">
+                  <li class="menu-item {{ request()->routeIs('users') ? 'active' : '' }}">
+                    <a href="{{ route('users') }}" class="menu-link">
+                      <div class="text-truncate">List</div>
                     </a>
                   </li>
 
@@ -554,7 +550,7 @@
                   </li>
                 </ul>
               </li>
-              <li class="menu-item">
+              <li class="menu-item d-none">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                   <i class="menu-icon tf-icons bx bx-check-shield"></i>
                   <div class="text-truncate" data-i18n="Roles & Permissions">Roles & Permissions</div>
@@ -1294,7 +1290,7 @@
 
                 <ul class="navbar-nav flex-row align-items-center ms-auto">
                   <!-- Language -->
-                  <li class="nav-item dropdown-language dropdown me-2 me-xl-0">
+                  <li class="nav-item dropdown-language dropdown d-none me-2 me-xl-0">
                     <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                       <i class="bx bx-globe bx-sm"></i>
                     </a>
@@ -1324,7 +1320,7 @@
                   <!-- /Language -->
 
                   <!-- Quick links  -->
-                  <li class="nav-item dropdown-shortcuts navbar-dropdown dropdown me-2 me-xl-0">
+                  <li class="nav-item dropdown-shortcuts navbar-dropdown d-none dropdown me-2 me-xl-0">
                     <a
                       class="nav-link dropdown-toggle hide-arrow"
                       href="javascript:void(0);"
@@ -1443,7 +1439,7 @@
                   <!-- / Style Switcher-->
 
                   <!-- Notification -->
-                  <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1">
+                  <li class="nav-item dropdown-notifications navbar-dropdown d-none dropdown me-3 me-xl-1">
                     <a
                       class="nav-link dropdown-toggle hide-arrow"
                       href="javascript:void(0);"
@@ -1708,7 +1704,7 @@
                         <div class="dropdown-divider"></div>
                       </li>
                       <li>
-                        <a class="dropdown-item" href="/profile">
+                        <a class="dropdown-item" href="{{ url('/profile') }}">
                           <i class="bx bx-user me-2"></i>
                           <span class="align-middle">My Profile</span>
                         </a>
@@ -1732,13 +1728,13 @@
                         <div class="dropdown-divider"></div>
                       </li>
                       <li>
-                        <a class="dropdown-item" href="pages-faq.html">
+                        <a class="dropdown-item" href="{{ route('faq') }}">
                           <i class="bx bx-help-circle me-2"></i>
                           <span class="align-middle">FAQ</span>
                         </a>
                       </li>
                       <li>
-                        <a class="dropdown-item" href="pages-pricing.html">
+                        <a class="dropdown-item" href="{{ route('pricing') }}">
                           <i class="bx bx-dollar me-2"></i>
                           <span class="align-middle">Pricing</span>
                         </a>

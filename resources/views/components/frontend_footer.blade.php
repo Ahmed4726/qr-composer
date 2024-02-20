@@ -4,7 +4,7 @@
         <div class="container">
           <div class="row gx-0 gy-4 g-md-5">
             <div class="col-lg-5">
-              <a href="landing-page.html" class="app-brand-link mb-4">
+              <a href="{{url('/')}}" class="app-brand-link mb-4">
                 <span class="app-brand-logo demo">
                   <svg
                     width="25"
@@ -104,19 +104,17 @@
                   <a href="pricing-page.html" class="footer-link">Pricing</a>
                 </li>
                 <li class="mb-3">
-                  <a href="payment-page.html" class="footer-link"
-                    >Payment<span class="badge rounded bg-primary ms-2 px-2">New</span></a
-                  >
+                  <a href="payment-page.html" class="footer-link">Payment</a>
                 </li>
                 <li class="mb-3">
                   <a href="checkout-page.html" class="footer-link">Checkout</a>
                 </li>
                 <li class="mb-3">
-                  <a href="help-center-landing.html" class="footer-link">Help Center</a>
+                  <a href="{{ route('login') }}" class="footer-link" target="_blank">Login</a>
                 </li>
                 <li class="mb-3">
-                  <a href="../vertical-menu-template/auth-login-cover.html" target="_blank" class="footer-link"
-                    >Login/Register</a
+                  <a href="{{ route('register') }}" target="_blank" class="footer-link"
+                    >Register</a
                   >
                 </li>
               </ul>

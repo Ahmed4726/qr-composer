@@ -7,7 +7,7 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-lg-8 mb-4 order-0">
+        <div class="col-lg-12 mb-4 order-0">
           <div class="card">
             <div class="d-flex align-items-end row">
               <div class="col-sm-7">
@@ -34,12 +34,19 @@
             </div>
           </div>
         </div>
-        @if($isAdmin)
-        <div class="col-lg-4 col-md-4 order-1">
+      </div>
+      <div class="row">
+      @if($isAdmin)
+        <div class="col-lg-6 col-md-4 order-1">
           <div class="row">
             <div class="col-lg-6 col-md-12 col-6 mb-4">
               <div class="card">
                 <div class="card-body pb-2">
+                <div class="avatar">
+                      <span class="avatar-initial rounded bg-label-primary">
+                        <i class="bx bx-user bx-sm"></i>
+                      </span>
+                    </div>
                   <span class="d-block fw-medium mb-1">Total Users: {{ $count_total_users }}</span>
                   {{-- <h3 class="card-title mb-1"></h3> --}}
                     <span class="d-block fw-medium mb-1">Active Users: {{ $count_active_users }}</span>
