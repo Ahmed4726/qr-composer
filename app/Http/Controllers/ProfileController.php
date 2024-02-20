@@ -24,16 +24,43 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        // dd($request);
+        // Validate the request data
+        // $request->validate([
+        //     'photo' => 'image|mimes:jpeg,png|max:800', // Adjust file types and size as needed
+        //     'firstName' => 'required|string|max:255',
+        //     'lastName' => 'required|string|max:255',
+        // ]);
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        // Handle photo upload
+        $logoPath = null;
+        if ($request->hasFile('photo')) {
+            $filename = $request->file('photo')->getClientOriginalName();
+            $logoPath = $request->file('photo')->move(public_path('images'), $filename);
+            $logoPath = "images/{$filename}";
         }
 
-        $request->user()->save();
+        // Update user details
+        $user = $request->user();
+        $user->fill([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+        ]);
 
+            if ($logoPath !== null) {
+                $user->photo = $logoPath;
+            }
+
+        // Reset email verification if email is updated
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
+        }
+
+        $user->save();
+
+        // Redirect with a status message
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
@@ -50,7 +77,8 @@ class ProfileController extends Controller
 
         Auth::logout();
 
-        $user->delete();
+        $user->status = 0;
+        $user->save();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
