@@ -20,7 +20,7 @@
                     alt="Join community arrow"
                     class="scaleX-n1-rtl"
                 /></span>
-                <a href="#landingPricing" class="btn btn-primary">Get early access</a>
+                <a href="#landingPricing" class="btn btn-primary">Get early</a>
               </div>
             </div>
             <div id="heroDashboardAnimation" class="hero-animation-img">
@@ -476,5 +476,5 @@
 
     <!-- / Sections:End -->
 @endsection
-    
+
 
